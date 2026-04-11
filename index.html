@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автомойки Владимирской области</title>
+    <meta name="description" content="Статус автомоек самообслуживания в реальном времени">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚗</text></svg>">
+    <meta name="theme-color" content="#2563eb"/>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚗 Автомойки самообслуживания</h1>
+            <p class="subtitle">Владимирская область</p>
+            <button id="refreshBtn">Обновить</button>
+        </header>
+
+        <main>
+            <div id="loading">Загрузка данных...</div>
+            <div id="error" class="hidden">Ошибка загрузки. Проверьте соединение.</div>
+            <div id="washList"></div>
+        </main>
+
+        <footer>
+            <p>Обновляется автоматически. Добавьте на главный экран!</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
