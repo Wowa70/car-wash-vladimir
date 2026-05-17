@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель - Автомойки Владимирской области</title>
+    <meta name="description" content="Панель администратора для управления статусом автомоек">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔑</text></svg>">
+    <meta name="theme-color" content="#dc2626"/>
+    <style>
+        .admin-header {
+            background: #dc2626;
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-header h2 {
+            font-size: 18px;
+        }
+        
+        .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .wash-bay.admin-mode {
+            position: relative;
+        }
+        
+        .status-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .status-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .status-btn.free {
+            background: #10b981;
+            color: white;
+        }
+        
+        .status-btn.free:hover {
+            background: #059669;
+        }
+        
+        .status-btn.busy {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .status-btn.busy:hover {
+            background: #dc2626;
+        }
+        
+        .status-btn.active {
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.3);
+            transform: scale(1.02);
+        }
+
+        .last-updated {
+            text-align: center;
+            color: #6b7280;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="admin-header">
+                <h2>🔑 Панель администратора</h2>
+                <a href="index.html" class="back-btn">← Пользователь</a>
+            </div>
+        </header>
+
+        <main>
+            <div id="loading">Загрузка данных...</div>
+            <div id="error" class="hidden">Ошибка загрузки. Проверьте соединение.</div>
+            <div id="adminWashList"></div>
+            <div class="last-updated">
+                Последнее обновление: <span id="lastUpdated">-</span>
+            </div>
+        </main>
+
+        <footer>
+            <p>Только для авторизованного персонала</p>
+        </footer>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

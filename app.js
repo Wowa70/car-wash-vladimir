@@ -53,6 +53,7 @@ class CarWashApp {
     }
     
     init() {
+        this.loadSharedData();
         this.renderWashBays();
         this.setupEventListeners();
         this.startAutoRefresh();
@@ -62,6 +63,26 @@ class CarWashApp {
             navigator.serviceWorker.register('/sw.js')
                 .then(() => console.log('SW registered'))
                 .catch(err => console.log('SW registration failed: ', err));
+        }
+        
+        // Слушаем изменения из admin.html
+        window.addEventListener('storage', () => {
+            this.loadSharedData();
+            this.renderWashBays();
+        });
+    }
+    
+    loadSharedData() {
+        // Загружаем данные из localStorage если они есть
+        const savedData = localStorage.getItem('washBaysData');
+        if (savedData) {
+            const updatedBays = JSON.parse(savedData);
+            updatedBays.forEach(updatedBay => {
+                const localBay = washBays.find(b => b.id === updatedBay.id);
+                if (localBay) {
+                    localBay.freeBays = updatedBay.freeBays;
+                }
+            });
         }
     }
     
@@ -108,6 +129,7 @@ class CarWashApp {
     startAutoRefresh() {
         // Обновляем данные каждые 30 секунд
         setInterval(() => {
+            this.loadSharedData();
             this.renderWashBays();
         }, 30000);
     }
