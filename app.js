@@ -136,24 +136,3 @@ class CarWashApp {
 document.addEventListener('DOMContentLoaded', () => {
     new CarWashApp();
 });
-
-// Базовая регистрация Service Worker для PWA
-if ('serviceWorker' in navigator) {
-    const swContent = `
-        self.addEventListener('install', (event) => {
-            console.log('Service Worker installing...');
-        });
-        
-        self.addEventListener('fetch', (event) => {
-            // Базовая обработка запросов
-        });
-    `;
-    
-    // Создаем blob URL для Service Worker
-    const blob = new Blob([swContent], { type: 'application/javascript' });
-    const swURL = URL.createObjectURL(blob);
-    
-    navigator.serviceWorker.register(swURL)
-        .then(() => console.log('SW registered'))
-        .catch(err => console.log('SW registration failed: ', err));
-}
